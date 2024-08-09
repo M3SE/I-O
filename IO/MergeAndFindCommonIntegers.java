@@ -12,7 +12,7 @@ public class MergeAndFindCommonIntegers {
         Set<Integer> commonSet = new HashSet<>();
 
         try {
-            // Read integers from input1.txt
+
             BufferedReader br1 = new BufferedReader(new FileReader("input1.txt"));
             String line;
             while ((line = br1.readLine()) != null) {
@@ -20,25 +20,26 @@ public class MergeAndFindCommonIntegers {
                     int num = Integer.parseInt(line);
                     list1.add(num);
                 } catch (NumberFormatException e) {
-                    System.out.println("Skipping invalid number format in input1.txt: " + line);
+                    System.out.println("Caught a NumberFormatException: Skipping invalid number format in input1.txt: " + line);
                 }
             }
             br1.close();
 
-            // Read integers from input2.txt
             BufferedReader br2 = new BufferedReader(new FileReader("input2.txt"));
             while ((line = br2.readLine()) != null) {
                 try {
                     int num = Integer.parseInt(line);
                     list2.add(num);
                 } catch (NumberFormatException e) {
-                    System.out.println("Skipping invalid number format in input2.txt: " + line);
+                    System.out.println("Caught a NumberFormatException: Skipping invalid number format in input2.txt: " + line);
                 }
             }
             br2.close();
 
+
             mergedList.addAll(list1);
             mergedList.addAll(list2);
+
 
             Set<Integer> set1 = new HashSet<>(list1);
             Set<Integer> set2 = new HashSet<>(list2);
@@ -48,12 +49,14 @@ public class MergeAndFindCommonIntegers {
                 }
             }
 
+
             BufferedWriter bwMerged = new BufferedWriter(new FileWriter("merged.txt"));
             for (Integer num : mergedList) {
                 bwMerged.write(num.toString());
                 bwMerged.newLine();
             }
             bwMerged.close();
+
 
             BufferedWriter bwCommon = new BufferedWriter(new FileWriter("common.txt"));
             for (Integer num : commonSet) {
